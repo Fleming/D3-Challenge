@@ -11,3 +11,30 @@ var margin = {
 
 var width = svgWidth - margin.left - margin.right + 20;
 var height = svgHeight - margin.top - margin.bottom - 20;
+
+var svg = d3
+    .select("#scatter")
+    .append("svg")
+    .attr("width", svgWidth)
+    .attr("height", svgHeight);
+
+// Append an SVG group
+var chartGroup = svg.append("g")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+
+var chosenXAxis = "smokes";
+var chosenYAxis = "age";
+
+// function used for updating x-scale var upon click on axis label
+function xScale(censusData, chosenXAxis) {
+    // create scales
+    var xLinearScale = d3.scaleLinear()
+        .domain([d3.min(censusData, d => d[chosenXAxis]) * 0.8,
+        d3.max(censusData, d => d[chosenXAxis]) * 1.2
+        ])
+        .range([0, width]);
+
+    return xLinearScale;
+
+}
