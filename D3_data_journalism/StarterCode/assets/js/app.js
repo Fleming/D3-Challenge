@@ -203,7 +203,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
         // .attr("transform")
         .call(leftAxis);
 
-    // append initial circles
+    // append initial circles(red is my favorite color, so i decree the circles be painted red)
     var circlesGroup = chartGroup.append("g")
         .selectAll("circle")
         .data(censusData)
